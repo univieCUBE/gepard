@@ -1,0 +1,30 @@
+Reference
+
+Krumsiek J, Arnold R, Rattei T
+Gepard: A rapid and sensitive tool for creating dotplots on genome scale.
+Bioinformatics 2007; 23(8): 1026-8. PMID: 17309896
+
+Bibtex-entry:
+
+@ARTICLE{Krumsiek2007,
+  author = {Jan Krumsiek and Roland Arnold and Thomas Rattei},
+  title = {Gepard: a rapid and sensitive tool for creating dotplots on genome
+	scale.},
+  journal = {Bioinformatics},
+  year = {2007},
+  volume = {23},
+  pages = {1026--1028},
+  number = {8},
+  month = {Apr},
+  abstract = {Gepard provides a user-friendly, interactive application for the quick
+	creation of dotplots. It utilizes suffix arrays to reduce the time
+	complexity of dotplot calculation to Theta(m*log n). A client-server
+	mode, which is a novel feature for dotplot creation software, allows
+	the user to calculate dotplots and color them by functional annotation
+	without any prior downloading of sequence or annotation data. AVAILABILITY:
+	Both source codes and executable binaries are available at http://mips.gsf.de/services/analysis/gepard},
+  doi = {10.1093/bioinformatics/btm039},
+  pii = {btm039},
+  pmid = {17309896},
+  url = {http://dx.doi.org/10.1093/bioinformatics/btm039}
+}

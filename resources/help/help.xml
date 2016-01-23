@@ -1,0 +1,131 @@
+<help>
+	
+	<helpitem id="sequence1">
+		Filename of the horizontal sequence
+	</helpitem>
+	
+	<helpitem id="sequence1select">
+		Show file selection dialog for first sequence
+	</helpitem>
+	
+	<helpitem id="sequence2">
+		Filename of the vertical sequence
+	</helpitem>
+	
+	<helpitem id="sequence2select">
+		Show file selection dialog for second sequence
+	</helpitem>
+	
+	<helpitem id="createplot">
+		Create or update the dotplot using the current sequences and plot settings.
+	</helpitem>
+	
+	<helpitem id="zoomin">
+		Zoom in - increase zoom factor
+	</helpitem>
+	
+	<helpitem id="zoomout">
+		Zoom out - decrease zoom factor
+	</helpitem>
+	
+	<helpitem id="fullplot">
+		Show full dotplot
+	</helpitem>
+	
+	<helpitem id="export">
+		Export the current view into an image file
+	</helpitem>
+	
+	<helpitem id="advmode">
+		Switch between simple and advanced user mode
+	</helpitem>
+	
+	<helpitem id="autozoom">
+		Enable automatic zooming - the plot will always fit into the current window
+	</helpitem>
+	
+	
+	<helpitem id="zoom">
+		Zoom factor
+	</helpitem>
+	
+	<helpitem id="autoparams">
+		When enabling "Auto params" mode, the program will automatically set word length and window size depending on the current zoom factor.
+	</helpitem>
+		
+	<helpitem id="wordlen">
+		The word length used for fast suffix array searching.
+		Lower values result in more sensitive plots but take a longer computation time.
+		Set this value to 0 to disable suffix array searches.
+	</helpitem>
+	
+	<helpitem id="winsize">
+		This is the window size used for conventional dot matrix computation.
+		Do not use this parameter at all for high zoom factors.
+	</helpitem>
+	
+	<helpitem id="automatrix">
+		Check this if you want the program to automatically determine the input sequences types and use a corresponding substitution matrix.
+	</helpitem>
+	
+	<helpitem id="substmatrix">
+		Select substitution matrix to be used for character comparison
+	</helpitem>
+	
+	<helpitem id="coordinates">
+		Define the dotplot coordinates for both sequences. 
+		Set all four coordinates to 0 to show the full plot.
+	</helpitem>
+	
+	<helpitem id="connect">
+		Check if the web service is available and retrieve the latest sequence lists
+	</helpitem>
+
+	<helpitem id="okbutton">
+		Apply changes
+	</helpitem>
+
+	<helpitem id="cancelbutton">
+		Discard changes
+	</helpitem>
+	
+	<helpitem id="lowerlimit">
+		Set the lowest dotmatrix value to be displayed
+	</helpitem>
+	
+	<helpitem id="upperlimit">
+		Set the minimum dotmatrix value which will show a black dot
+	</helpitem>
+	
+	<helpitem id="greyscale">
+		Define the greyscale range to be used
+	</helpitem>
+	
+	
+	<helpitem id="savesa">
+		Save calculated suffix arrays in files for fast reloading.
+		Warning: Suffix arrays take up 5 times more disk space than the original sequences!
+	</helpitem>
+	
+	<helpitem id="localclick">
+		Mouse click action for local plots
+	</helpitem>
+		
+	<helpitem id="deletesas">
+		Delete all stored suffix array files now
+	</helpitem>
+	
+	<helpitem id="httpproxy">
+		Edit HTTP proxy settings
+	</helpitem>
+	
+	<helpitem id="quit">
+		Quit Gepard
+	</helpitem>
+
+	<helpitem id="reversecomplementary">
+		Reverse-complementarize second sequence in the alignments
+	</helpitem>
+
+	
+</help>

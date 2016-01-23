@@ -1,0 +1,8 @@
+<substmatrices>
+	<matrix name="DNA" file="edna.mat" nucleotide="1" />
+	<matrix name="BLOSUM62" file="blosum62.mat" nucleotide="0" />
+	<matrix name="PAM250" file="pam250.mat" nucleotide="0" />
+	<matrix name="Identity" file="protidentity.mat" nucleotide="0" />
+	<matrix name="[User defined AA matrix]" file="-" nucleotide="0">
+</matrix>
+</substmatrices>

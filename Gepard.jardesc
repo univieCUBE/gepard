@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<jardesc>
+    <jar path="Gepard/Gepard.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/Gepard/Gepard.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" mainClassHandleIdentifier="=Gepard/src&lt;org.gepard.client{Start.java[Start" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <javaElement handleIdentifier="=Gepard/src"/>
+        <folder path="/Gepard/resources"/>
+        <file path="/Gepard/README.txt"/>
+        <file path="/Gepard/.classpath"/>
+    </selectedElements>
+</jardesc>

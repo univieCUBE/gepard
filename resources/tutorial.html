@@ -1,0 +1,234 @@
+<html>
+<head>
+
+<title>Gepard tutorial</title>
+
+ <style type="text/css"><!--
+    p,td,ul,ol,body {
+	font-family : Sans-Serif, Helv, Helvetica, Verdana, Arial;
+        font-size: 12px;
+    }
+    pre,tt {
+	font-family : Courier, Fixed;
+        font-size: 12px;
+    }
+    h1{
+	font-family : Sans-Serif, Helv, Helvetica, Verdana, Arial;
+        font-weight : bold;
+        font-size: 14px;
+        }
+    h2{
+	font-family : Sans-Serif, Helv, Helvetica, Verdana, Arial;
+        font-weight : bold;
+        font-size: 14px;
+        }
+    h3{
+	font-family : Sans-Serif, Helv, Helvetica, Verdana, Arial;
+        font-weight : bold;
+        font-size: 12px;
+        }
+    h4{
+	font-family : Sans-Serif, Helv, Helvetica, Verdana, Arial;
+        font-size: 12px;
+        }
+    h5{
+	font-family : Sans-Serif, Helv, Helvetica, Verdana, Arial;
+        font-size: 12px;
+        }
+    a{
+        color:#0000BB;
+	text-decoration: none;
+        }
+    a:hover{
+	text-decoration: underline;
+    }
+    --></style>
+
+</head>
+
+<body>
+
+
+
+<!-- BEGIN COMMON CONTENT-->
+
+<h2>Gepard tutorial</h2>
+<p>
+This is a short tutorial which briefly describes all major features of the Gepard program. It applies to <b>Gepard version 1.17</b> or later.
+
+</p>
+
+<p style="color:red"><b>
+Note: The remote functionality has been removed in the final Gepard release.
+</b></p>
+
+<p>
+<h2>Contents</h2>
+<a href="#create">1. Creating dotplots</a><br/>
+<a href="#filter">2. Filtering and emphasizing dot matrix information</a><br/>
+<a href="#params">3. Tweaking dotplot parameters</a><br/>
+<a href="#navigate">4. Navigating through the dotplot and showing alignments</a><br/>
+<a href="#safiles">5. Suffix array files</a><br/>
+<a href="#cmdline">6. Command line mode</a>
+
+</p>
+<br/>
+<a name="create"></a>
+<h2>1. Creating dotplots</h2>
+<ol type="a">
+<li>
+<b>Local dotplots</b><br/>
+<ul>
+<li>To create a local dotplot simply <b>select</b> two FASTA format sequence files using the "Select file" buttons located in the upper left region of the Gepard window.</li>
+<li>Click "<b>Create dotplot</b>". The program will automatically determine the input sequence types (DNA or Protein) and assign a corresponding scoring matrix.</li>
+<li>For persistenct <b>storage of the calculated suffix</b> arrays on your hard-disk, enable this option in the "Misc" tab in advanced mode. This will avoid suffix array recalulation.</li>
+</ul>
+<br/>
+</li>
+
+<li>
+<b>Remote dotplots</b>  <br/>
+<ul>
+<li>To have a dotplot of PEDANT contigs <b>calculated on our server</b>, first select the "Remote" tab at the upper left edge of the window.</li>
+<li>Click "<b>connect</b>" to ensure connectivity to the webservice and download the latest sequence lists</li>
+<li><b>Select</b> two sequences to be compared OR select "[Use uploaded sequence]" from one of the organism lists to upload a local sequence for comparison.</li>
+<li>Use the "<b>Functions</b>" tab in the advanced mode options panel to have genes of certain functions encolored in the plot.<br/>The three base colors will blend, red and green becomes yellow, red and blue becomes purple, green and blue becomes cyan. If all categories overlap in one gene it will be colored white (or grey if the funcat coler strength is reduced).</li>
+<li>Click "<b>Create dotplot</b>". The request will be submitted to the server; current progress information will be shown in a dialog window.</li>
+</ul>
+</li>
+
+</ol>
+
+<br/>
+<a name="filter"></a>
+<h2>2. Filtering and emphasizing dot matrix information</h2>
+Switch to advanced mode by clicking the "Advanced mode" button.
+<ul>
+<li>Select the <b>"Display"</b> tab in the advanced options panel.</li>
+<li>
+Use the scrollbars to alter the visualization of the dotmatrix data in the plot.
+<ul>
+<li><b>Lower color limit</b> and <b>Upper color limit</b> indicates the lowest/highest dotmatrix scores which will be displayed in the plot. Increasing these values will reduce noise and emphasize significant regions.</li>
+<li><b>Greyscale start</b> sets the actual greyscale range of the dots. Move this scrollbar to the right and each visible dot in the plot will be black.</li>
+<li><b>Funcat color weight</b> is only available in remote dotplot mode. It adjusts the intensity of the functional category encoloring.
+</ul>
+</li>
+</ul>
+
+<br/>
+<a name="params"></a>
+<h2>3. Tweaking dotplot parameters</h2>
+Switch to advanced mode by clicking the "Advanced mode" button and select the <b>"Plot"</b> tab in the advanced options panel.
+
+<ul>
+<li>
+<b>Coordinates</b> - use these values to manually define the in-sequence coordinates of both sequences
+</li>
+<li>
+<b>Zoom</b> - by default the program will automatically zoom the dotplot to fit your window size. You can deactivate auto-zoom and enter a zooming factor manually. Note that this will affect the dotplot calculation time.
+</li>
+<li>
+The option <b>Small plots</b> will create dotplots of half size in auto zoom mode. This is intended to reduce transmission times in remote mode.
+</li>
+<li>
+<b>Parameters</b>
+These parameters control the heuristics Gepard uses to find matching subsequences. Only disabled auto params mode if you really need to tweak these parameters.
+<ul>
+<li><b>Word length</b> - minimum word length for identical subsequences which create a hit in the dotplot</li>
+<li><b>Window size</b> - If word length==0 "normal" dotplot mode will be activated where all characters of both sequences are compared against each other.<br/>
+This parameter specifies the window size over which an average dot value will be calculated.<br/>
+It should only be used if the created dotplot is not larger than around 10000 by 10000 characters. 
+</ul>
+</li>
+<li>
+<b>Substitution matrices</b> - in "auto matrix" mode the program will automatically use <u>BLOSUM62</u> for amino acid sequences and a standard match/mismatch matrix for nucleotide sequences. Deactivate auto-matrix mode to manually select a scoring matrix included with Gepard or choose a <b>custom matrix</b>.
+</li>
+</ul>
+
+<br/>
+<a name="navigate"></a>
+<h2>4. Navigating through the dotplot and showing alignments</h2>
+
+<ul>
+<li><b>Zooming with buttons</b> - Use the buttons below the sequence selection panels to zoom in & out and to zoom out to the full dotplot perspective.</li>
+<li><b>Zooming with the mouse</b> - Press your primary mouse button and drag the mouse to select an area of interest. Then click "update dotplot" to zoom into this area.</li>
+<li><b>Clicking</b> In the "Misc" tab you choose between two click actions:
+	<ol>
+	<li>Showing <b>alignments</b>. <b>Left-clicking</b> will simply show the alignment at the position you clicked. <b>Right-clicking</b> will activate Gepard's <b>sticky-click</b> feature to directly move the alignment to the <b>best diagonal hit</b> in a range of 5 pixels around the clicking point.
+	<li><b>Looking up genes</b> (remote mode only). Look up genes from the PEDANT databases at the specific position on the horizontal sequence (primary mouse button) or the vertical sequence (secondary mouse button).
+	</ol>
+<li><b>Press and hold CTRL</b> in remote mode to <b>display gene names</b> directly in the plot. Click the mouse while holding CTRL to copy the current gene information into the clipboard.</li>
+<li>To show a <b>reverse complementary alignment</b> use the corresponding option in the "Display" tab in advanced mode.
+<li>Use the arrow keys to <b>move the dotplot crosshair</b> and change the current alignment. Use the keyboard keys W,A,S,D for faster navigation. When <b>sticking to a diagonal</b> you can also use G and H (slow movement) or J and K (fast navigation) to slide along the current diagonal, forward or reverse. </li>
+<li><b>Image export </b> - The display tab also contains a button for image export. This will save the current dotplot view to an image file.</li>
+</ul>
+
+
+<br/>
+<a name="safiles"></a>
+<h2>5. Suffix array files</h2>
+
+<ul>
+<li><b>Stored suffix array files</b> are automatically read by Gepard for their corresponding sequences. The program searches in the <pre>.gepard/</pre> folder in the user's home directory for a file with the filename format <pre>[sequencefilename]_[sequencelength].sa</li> OR in the same directory as the sequence file for a file called <pre>[sequencefilename].sa</pre> For example if you are using a sequence file called "contig5.fa" the program will try to read "contig5.fa.sa" from the same directory as well as the corresponding file including the sequence length from the ".gepard/" directory.<br/><br/><br/></li>
+<li>You can also <b>manually create</b> suffix arrays files:<br/><br/>
+	<ol>
+	<li>If the <b>Vmatch</b> package is installed on your system you can use the following command in the Gepard main directory to let the tool 'mkvtree' create the suffix array file:
+		<pre>java -cp lib/gepard.jar org.krumsiek.gepard.common.GenSAFileVmatch &lt;sequencefile&gt; &lt;outfile&gt;</pre></li>
+	<li>If you <b>cannot use Vmatch</b> you may use Gepard's integrated suffix array creation method:</li>
+			<pre>java -Xmx512m -cp lib/gepard.jar org.krumsiek.gepard.common.GenSAFile &lt;sequencefile&gt; &lt;outfile&gt;</pre>
+			
+		 The option "-Xmx512m" means that the program may use 512 megabytes of <b>memory</b>.</li>
+	</ol>
+
+	
+</li>
+</ul><br/>
+
+<a name="cmdline"></a>
+<h2>6. Command line mode</h2>
+
+Since version 1.20 Gepard contains a command line dotplot mode (for offline plotting only).
+<br/>
+<ul>
+<li>Use <b>gepardcmd.sh</b> on the Linux command line or <b>gepardcmd.bat</b> on the Windows command line to start the Gepard command line tool.</li>
+<li>Start the program <b>without any arguments</b> to get a <b>detailed list</b> of all arguments and their function.</li>
+<li><b>Edit</b> the startup script and change the <b>-Xmx</b> Java VM parameter if you want more or less <b>memory</b> available for the program.</li>
+<li><b>Important note:</b>: The command line tool always needs a <b>substitution matrix file</b>, even when running in <b>suffix array mode</b> (word > 0, window = 0).</li>
+</ul>
+
+<p><b>Examples</b></p>
+Here are some examples for command line dotplot calls which create plots between <i>Escherichia coli</i> versus <i>Shigelia flexneri</i>. As of the time of the last editing of this text, the genome files could for instance be retrieved from the NCBI FTP:<br/><br/>
+E.coli K12: <a href="ftp://ftp.ncbi.nih.gov/genomes/Bacteria/Escherichia_coli_K12/NC_000913.fna">ftp://ftp.ncbi.nih.gov/genomes/Bacteria/Escherichia_coli_K12/NC_000913.fna</a><br/>
+S.flexneri 2a: <a href="ftp://ftp.ncbi.nih.gov/genomes/Bacteria/Shigella_flexneri_2a/NC_004337.fna">ftp://ftp.ncbi.nih.gov/genomes/Bacteria/Shigella_flexneri_2a/NC_004337.fna</a><br/><br/>
+The following examples use the Linux startup script <i>gepardcmd.sh</i>. Windows users just replace this command by <i>gepardcmd.bat</i>. It is assumed that you start the script from the Gepard main directory.
+
+<ul>
+<li>Create dotplot and using EDNA (standard DNA) matrix and write results to plot.png:
+<pre>gepardcmd.sh -seq1 NC_000913.fna -seq2 NC_004337.fna -matrix matrices/edna.mat -outfile plot.png</pre>
+</li>
+<li>Same plot as above but with tweaked display parameters:
+<pre>gepardcmd.sh -seq1 NC_000913.fna -seq2 NC_004337.fna -matrix matrices/edna.mat -outfile plot.png -lower 50</pre>
+</li>
+
+<li>Do larger plot and use partial sequences (coordinates in E.coli specified as absolute values, coordinates in S.flexneri specified as relative coordinates):
+<pre>./gepardcmd.sh -seq1 NC_000913.fna -seq2 NC_004337.fna -matrix matrices/edna.mat -outfile plot.png -lower 50 -maxwidth 1500 -maxheight 1500 -from1 1760000 -to1 1850000 -from2 32% -to2 34%</pre>
+</li>
+
+<li><b>Precalculate suffix array</b> and use precalculated file in dotplot:
+<pre>java -Xmx512m -cp lib/gepard.jar org.krumsiek.gepard.common.GenSAFile NC_000913.fna NC_000913.fna.sa 
+gepardcmd.sh -seq1 NC_000913.fna -seq2 NC_004337.fna -matrix matrices/edna.mat -outfile plot.png -safile NC_000913.fna.sa</pre>
+</li>
+
+<br/>
+<div align="right">
+<b>Gepard:</b> <a href="http://mips.gsf.de/services/analysis/gepard">http://mips.gsf.de/services/analysis/gepard</a><br/><br/>
+<b>Last change:</b> Jan Krumsiek - Nov 4, 2007
+</div>
+
+<!-- END COMMON CONTENT-->
+
+
+
+
+</body>
+</html>
