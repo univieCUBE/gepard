@@ -43,7 +43,5 @@ Since version 1.20 Gepard contains a comand line functionality. In its current
 version it only supports OFFLINE dotplots which means that you have to online
 access to the genomes in the PEDANT database from the command line.
 
-To start the comand line tool of Gepard use "gepardcmd.sh" on Un*x systems and
-"gepardcmd.bat" on Windows systems. If the command line startup script does 
-not work on your system you need to start the program manually as outlined
-above in section 3.
+To start the comand line tool of Gepard execute the jar file in this way:
+java -cp Gepard-1.40.jar org.gepard.client.cmdline.CommandLine
