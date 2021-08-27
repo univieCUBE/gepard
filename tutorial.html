@@ -69,7 +69,8 @@ Note: The remote functionality has been removed in the final Gepard release.
 <a href="#params">3. Tweaking dotplot parameters</a><br/>
 <a href="#navigate">4. Navigating through the dotplot and showing alignments</a><br/>
 <a href="#safiles">5. Suffix array files</a><br/>
-<a href="#cmdline">6. Command line mode</a>
+<a href="#alignment">6. Alignment</a><br/>
+<a href="#cmdline">7. Command line mode</a>
 
 </p>
 <br/>
@@ -160,7 +161,7 @@ It should only be used if the created dotplot is not larger than around 10000 by
 <li><b>Press and hold CTRL</b> in remote mode to <b>display gene names</b> directly in the plot. Click the mouse while holding CTRL to copy the current gene information into the clipboard.</li>
 <li>To show a <b>reverse complementary alignment</b> use the corresponding option in the "Display" tab in advanced mode.
 <li>Use the arrow keys to <b>move the dotplot crosshair</b> and change the current alignment. Use the keyboard keys W,A,S,D for faster navigation. When <b>sticking to a diagonal</b> you can also use G and H (slow movement) or J and K (fast navigation) to slide along the current diagonal, forward or reverse. </li>
-<li><b>Image export </b> - The display tab also contains a button for image export. This will save the current dotplot view to an image file.</li>
+<li><b>Image export </b> - The display tab also contains a button for image export. This will save the current dotplot view to an image file or a pdf. When exporting to a pdf files, you can either create a new file, or select already existing pdf files. In this case, a new page will be added to the file with the graph on it.</li>
 </ul>
 
 
@@ -180,12 +181,22 @@ It should only be used if the created dotplot is not larger than around 10000 by
 		 The option "-Xmx512m" means that the program may use 512 megabytes of <b>memory</b>.</li>
 	</ol>
 
-	
+</ul>
 </li>
-</ul><br/>
+<a name="alignment"></a>
+<h2>6. Allignment</h2>
 
+Since version 2.0 Gepard contains allignment functionality via two different algorythms: Smith-Waterman and Needleman-Wunsch.
+<br/>
+<ul>
+<li>To access the functionality, in the GUI version, open the <b>misc tab</b> and select either <b>"use Smith-Waterman algorythm"</b> or <b>"use Needleman-Wunsch algorythm"</b>.</li>
+<li>You can then, by selecting the <b>"local dotplot click action"</b>, either display the alignment below the graph or export it as a multi-fasta file.</li>
+<li>In the GUI version of gepard the alignment will always be calculated over a window of 1000. In order to use a custom windowsize, please do so with the commandline client.</li>
+</ul>
+</li>
+<br/>
 <a name="cmdline"></a>
-<h2>6. Command line mode</h2>
+<h2>7. Command line mode</h2>
 
 Since version 1.20 Gepard contains a command line dotplot mode (for offline plotting only).
 <br/>
@@ -203,25 +214,25 @@ The following examples use the Linux startup script <i>gepardcmd.sh</i>. Windows
 
 <ul>
 <li>Create dotplot and using EDNA (standard DNA) matrix and write results to plot.png:
-<pre>gepardcmd.sh -seq1 NC_000913.fna -seq2 NC_004337.fna -matrix matrices/edna.mat -outfile plot.png</pre>
+<pre>gepardcmd.sh -seq NC_000913.fna NC_004337.fna -matrix matrices/edna.mat -outfile plot.png</pre>
 </li>
 <li>Same plot as above but with tweaked display parameters:
-<pre>gepardcmd.sh -seq1 NC_000913.fna -seq2 NC_004337.fna -matrix matrices/edna.mat -outfile plot.png -lower 50</pre>
+<pre>gepardcmd.sh -seq NC_000913.fna NC_004337.fna -matrix matrices/edna.mat -outfile plot.png -lower 50</pre>
 </li>
 
 <li>Do larger plot and use partial sequences (coordinates in E.coli specified as absolute values, coordinates in S.flexneri specified as relative coordinates):
-<pre>./gepardcmd.sh -seq1 NC_000913.fna -seq2 NC_004337.fna -matrix matrices/edna.mat -outfile plot.png -lower 50 -maxwidth 1500 -maxheight 1500 -from1 1760000 -to1 1850000 -from2 32% -to2 34%</pre>
+<pre>./gepardcmd.sh -seq NC_000913.fna NC_004337.fna -matrix matrices/edna.mat -outfile plot.png -lower 50 -maxwidth 1500 -maxheight 1500 -from1 1760000 -to1 1850000 -from2 32% -to2 34%</pre>
 </li>
 
 <li><b>Precalculate suffix array</b> and use precalculated file in dotplot:
 <pre>java -Xmx512m -cp lib/gepard.jar org.krumsiek.gepard.common.GenSAFile NC_000913.fna NC_000913.fna.sa 
-gepardcmd.sh -seq1 NC_000913.fna -seq2 NC_004337.fna -matrix matrices/edna.mat -outfile plot.png -safile NC_000913.fna.sa</pre>
+gepardcmd.sh -seq NC_000913.fna NC_004337.fna -matrix matrices/edna.mat -outfile plot.png -safile NC_000913.fna.sa</pre>
 </li>
 
 <br/>
 <div align="right">
 <b>Gepard:</b> <a href="http://mips.gsf.de/services/analysis/gepard">http://mips.gsf.de/services/analysis/gepard</a><br/><br/>
-<b>Last change:</b> Jan Krumsiek - Nov 4, 2007
+<b>Last change:</b> Julius Krämer - Aug 27 2020
 </div>
 
 <!-- END COMMON CONTENT-->
