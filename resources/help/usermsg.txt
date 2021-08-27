@@ -1,0 +1,7 @@
+First start
+
+Welcome to the Gepard dotplot software.
+
+It is recommended to read the tutorial / short manual to get an overview over the functionality of the program. The tutorial is included with the download archive.
+
+(This user message will only show up once) 
