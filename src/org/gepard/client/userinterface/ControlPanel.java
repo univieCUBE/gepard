@@ -636,12 +636,6 @@ public class ControlPanel extends JPanel implements AdjustmentListener, ActionLi
 		miscTab.add(btnDeleteSAs = getCustomButton("Delete suffix array files"), c);
 
 		c.gridy++;
-		c.insets = initInsets;
-		miscTab.add(showSmithWaterman = getCustomCheckbox("Use Smith-Waterman algorithm"), c);
-		c.gridy++;
-		c.insets = initInsets;
-		miscTab.add(showNeedlemanWunsch = getCustomCheckbox("Use Needleman-Wunsch algorithm"), c);
-		c.gridy++;
 		c.insets = defInsets;
 		miscTab.add(getCustomLabel("Local dotplot click action..."), c);
 		c.gridy++;
@@ -651,6 +645,13 @@ public class ControlPanel extends JPanel implements AdjustmentListener, ActionLi
 		c.gridy++;
 		c.insets = extraVertInsets;
 		miscTab.add(optLocalDoNothing = getCustomRadioButton("... do nothing"), c);
+		
+		c.gridy++;
+		c.insets = initInsets;
+		miscTab.add(showSmithWaterman = getCustomCheckbox("Use Smith-Waterman algorithm"), c);
+		c.gridy++;
+		c.insets = initInsets;
+		miscTab.add(showNeedlemanWunsch = getCustomCheckbox("Use Needleman-Wunsch algorithm"), c);
 
 		c.gridy++;
 		miscTab.add(btnSetupProxy = getCustomButton("HTTP proxy settings"), c);
@@ -1041,20 +1042,54 @@ public class ControlPanel extends JPanel implements AdjustmentListener, ActionLi
 			} else if (evt.getSource() == showSmithWaterman) {
 				// save config setting
 				Config.getInstance().setVal("SmithWaterman", showSmithWaterman.isSelected() ? "1" : "0");
+				// change the other checkboxx to deselect if align
+				if (getLocalClickAction() == ClientGlobals.LOCALCLICK_SHOWALIGN &&
+						Config.getInstance().getIntVal("SmithWaterman", 0) == 1) {
+					Config.getInstance().setIntVal("NeedlemanWunsch", 0);
+					showNeedlemanWunsch.setSelected(false);
+				}
 			} else if (evt.getSource() == showNeedlemanWunsch) {
 				// save config setting
 				Config.getInstance().setVal("NeedlemanWunsch", showNeedlemanWunsch.isSelected() ? "1" : "0");
+				// change the other checkboxx to deselect if align
+				if (getLocalClickAction() == ClientGlobals.LOCALCLICK_SHOWALIGN &&
+						Config.getInstance().getIntVal("NeedlemanWunsch", 0) == 1) {
+					Config.getInstance().setIntVal("SmithWaterman", 0);
+					showSmithWaterman.setSelected(false);
+				}
 			}else if (evt.getSource() == optLocalShowAlign) {
+				// smithwaterman and needlemanwunsch checkbox only visible when show align or export
+				showSmithWaterman.setVisible(true);
+				showNeedlemanWunsch.setVisible(true);
+				showNeedlemanWunsch.setSelected(false);
+				showSmithWaterman.setSelected(false);
+				Config.getInstance().setIntVal("SmithWaterman", 0);
+				Config.getInstance().setIntVal("NeedlemanWunsch", 0);
 				// tell controller if alignments will be shown
 				setupForAlignments();
 				// save setting
 				Config.getInstance().setVal("local_click", "0");
+				
 			}  else if (evt.getSource() == optLocalExport) {
+				// smithwaterman and needlemanwunsch checkbox only visible when show align or export
+				showSmithWaterman.setVisible(true);
+				showNeedlemanWunsch.setVisible(true);
+				showNeedlemanWunsch.setSelected(false);
+				showSmithWaterman.setSelected(false);
+				Config.getInstance().setIntVal("SmithWaterman", 0);
+				Config.getInstance().setIntVal("NeedlemanWunsch", 0);
 				// tell controller if alignments will be shown
 				setupForAlignments();
 				// save setting
 				Config.getInstance().setVal("local_click", "1");
 			} else if (evt.getSource() == optLocalDoNothing) {
+				// smithwaterman and needlemanwunsch checkbox only visible when show align or export
+				showSmithWaterman.setVisible(false);
+				showNeedlemanWunsch.setVisible(false);
+				showNeedlemanWunsch.setSelected(false);
+				showSmithWaterman.setSelected(false);
+				Config.getInstance().setIntVal("SmithWaterman", 0);
+				Config.getInstance().setIntVal("NeedlemanWunsch", 0);
 				// tell controller if alignments will be shown
 				setupForAlignments();
 				// save setting
