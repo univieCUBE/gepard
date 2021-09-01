@@ -52,7 +52,7 @@ public class Controller implements AbortionChecker {
 	private ContainerWindow container; // container object
 	private MainPanel mp; // main GUI panel
 	private DrawPanel dp; // GUI draw panel
-	private ControlPanel cp; // GUI control panel
+	public static ControlPanel cp; // GUI control panel
 	private InfoPanel ip; // GUI information panel
 	private StatusDialog stat; // calculation status dialog
 
@@ -964,10 +964,22 @@ public class Controller implements AbortionChecker {
 
 			}
 			// show alignment
+			if(Config.getInstance().getIntVal("SmithWaterman", 0) == 1 || Config.getInstance().getIntVal("NeedlemanWunsch", 0) == 1){
+				// create status window
+				stat = new StatusDialog(this);
+				// get containers position and center dialog
+				WindowPos cpos = container.getPosition();
+				stat.setLocation(cpos.x + (cpos.width / 2) - (stat.getWidth() / 2), cpos.y + (cpos.height / 2) - (stat.getHeight() / 2));
+				stat.setStatusText("calculating alignment...");
+			}
 			ip.showAlignment(curAlignData1, curAlignData2, dataOffset1, dataOffset2, curAlignData1.length, curAlignData2.length, crossPosX, crossPosY,
 					dpInfo.submat, cp.reverseComplementaryAlignments());
 			// set pos in plotter
 			p.setCrossHair(crossX, crossY, crossPosX, crossPosY);
+			if(Config.getInstance().getIntVal("SmithWaterman", 0) == 1 || Config.getInstance().getIntVal("NeedlemanWunsch", 0) == 1) {
+				stat.close();
+				stat = null;
+			}
 			dp.repaint();
 
 		} else if (localClickAction == ClientGlobals.LOCALCLICK_EXPORT) {
