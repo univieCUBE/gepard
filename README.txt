@@ -1,6 +1,6 @@
 Gepard  (GEnome PAir - Rapid Dotter)
 
-Version: 1.40 final
+Version: 2.1.0
 
 Division of Computational Systems Biology
 University of Vienna
