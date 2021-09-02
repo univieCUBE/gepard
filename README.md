@@ -19,7 +19,7 @@ Genome Pair Rapid Dotter (gepard)
 
 ## Introduction
 
-Gepard provides a user-friendly, interactive application for the quick creation of dotplots. It utilizes suffix arrays to reduce the time complexity of dotplot calculation to Theta(m*log n). A client-server mode, which is a novel feature for dotplot creation software, allows the user to calculate dotplots and color them by functional annotation without any prior downloading of sequence or annotation data.
+Gepard provides a user-friendly, interactive application for the quick creation of dotplots. It utilizes suffix arrays to reduce the time complexity of dotplot calculation to Theta(m*log n). A client-server mode, which is a novel feature for dotplot creation software, allows the user to calculate dotplots and color them by functional annotation without any prior downloading of sequence or annotation data. A detailed description of how to use gepard can be found in the tutorial.html file.
 
 ## Installation
 
